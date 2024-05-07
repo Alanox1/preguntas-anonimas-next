@@ -20,6 +20,9 @@ export default function Home() {
     const queryCollection = collection(querydb, "questions")
     getDocs(queryCollection)
     .then(res => setQuestions(res.docs.map((question: { id: string; data: any }) => ({id : question.id, ...question.data()}))))
+    .catch(err => {
+      console.log(err)
+    })
   },[])
   console.log(questions)
   return (
