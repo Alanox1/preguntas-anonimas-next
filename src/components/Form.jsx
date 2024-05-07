@@ -1,9 +1,8 @@
 "use client"
-import React, { useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import { db } from '@/firebase/config';
 import { doc, setDoc, collection, addDoc } from "firebase/firestore";
 import Question from './Question';
-
 
 const Form = ({ changeQuestions , questions }) => {
 const [ value, setValue ] = useState("")
