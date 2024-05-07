@@ -4,10 +4,16 @@ import { db } from '@/firebase/config';
 import { doc, setDoc, collection, addDoc } from "firebase/firestore";
 import Question from './Question';
 
-const Form = ({ changeQuestions , questions }) => {
+interface FormProps {
+  changeQuestions: (newQuestions: any[]) => void; 
+  questions: any[]; 
+}
+
+const Form: React.FC<FormProps>  = ({ changeQuestions , questions }) => {
+  console.log(questions)
 const [ value, setValue ] = useState("")
 
-const handleSubmit = async (e) => {
+const handleSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     const newQuestion = {

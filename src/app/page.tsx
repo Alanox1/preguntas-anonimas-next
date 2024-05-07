@@ -5,9 +5,13 @@ import { useEffect, useState } from "react";
 import {getFirestore, getDocs, collection} from "firebase/firestore"
 import {app}from "@/firebase/config"
 
+interface Questions {
+  id: string;
+  question: string ;
+}
 
 export default function Home() {
-  const [ questions, setQuestions ] = useState([])
+  const [ questions, setQuestions ] = useState<Questions[]>([])
 
   console.log(questions)
 
@@ -15,7 +19,7 @@ export default function Home() {
     const querydb = getFirestore(app)
     const queryCollection = collection(querydb, "questions")
     getDocs(queryCollection)
-    .then(res => setQuestions(res.docs.map(question => ({id : question.id, ...question.data()}))))
+    .then(res => setQuestions(res.docs.map((question: { id: string; data: any }) => ({id : question.id, ...question.data()}))))
   },[])
   console.log(questions)
   return (

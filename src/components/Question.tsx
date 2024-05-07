@@ -1,6 +1,9 @@
 import React from 'react'
-
-const Question = ({question}) => {
+interface Question {
+    id: string;
+    question: string;
+}
+const SingleQuestion: React.FC<Question> = ({question}) => {
   return (
     <div className='flex flex-col '>
         <p className='bg-yellow-500 p-2 '>Question</p>
@@ -9,4 +12,4 @@ const Question = ({question}) => {
   )
 }
 
-export default Question
+export default SingleQuestion
