@@ -1,7 +1,7 @@
 import type {Metadata} from "next";
 
 import "./globals.css";
-
+import "@/firebase/config"
 export const metadata: Metadata = {
   title: "Questioncy",
   description: "Aplicación de preguntas y respuestas anónimas - Goncy",
