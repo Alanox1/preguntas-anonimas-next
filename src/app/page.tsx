@@ -30,7 +30,7 @@ export default function Home() {
         const data = doc.data() as FirebaseQuestionData;
         const question: QuestionsType = {
           id: doc.id,
-          question: data.question,
+          question: ((doc.data() as FirebaseQuestionData)?.question ?? "")
           // Otros campos si los hay
         };
         fetchedQuestions.push(question);

@@ -10,7 +10,7 @@ interface FormProps {
 }
 
 const Form: React.FC<FormProps>  = ({ changeQuestions , questions }) => {
-  console.log(questions)
+
 const [ value, setValue ] = useState("")
 
 const handleSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
@@ -41,8 +41,8 @@ const handleSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
 }
   return (
     <form onSubmit={handleSubmit} className='w-full flex flex-col'>
-          <label className='bg-red-500 p-4 text-2xl'>Questioncy</label>
-          <input type='text' value={value} onChange={(e) => setValue(e.target.value)} placeholder='Me pregunto si...' className='p-6' />
+          <label htmlFor="questionInput" className='bg-red-500 p-4 text-2xl'>Questioncy</label>
+          <input id="questionInput"  type='text' value={value} onChange={(e) => setValue(e.target.value)} placeholder='Me pregunto si...' className='p-6' />
 
           <button type='submit' className='mt-4 text-center bg-green-500 p-4 text-xl'>Enviar pregunta</button>
     </form>
