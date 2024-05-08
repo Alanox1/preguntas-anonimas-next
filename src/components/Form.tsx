@@ -3,16 +3,18 @@ import React, { ChangeEvent, useState } from 'react'
 import { db } from '@/firebase/config';
 import { doc, setDoc, collection, addDoc } from "firebase/firestore";
 
-
-interface FormProps {
-  changeQuestions: (newQuestions: any[]) => void; 
-  questions: any[]; 
-}
-
 interface Question {
   question: string;
+
   // Otras propiedades si las hay
 }
+
+interface FormProps {
+  changeQuestions: (newQuestions: Question[]) => void; 
+  questions: Question[]; 
+}
+
+
 
 const Form: React.FC<FormProps>  = ({ changeQuestions , questions }) => {
 
