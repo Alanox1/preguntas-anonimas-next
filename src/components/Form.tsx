@@ -2,11 +2,16 @@
 import React, { ChangeEvent, useState } from 'react'
 import { db } from '@/firebase/config';
 import { doc, setDoc, collection, addDoc } from "firebase/firestore";
-import Question from './Question';
+
 
 interface FormProps {
   changeQuestions: (newQuestions: any[]) => void; 
   questions: any[]; 
+}
+
+interface Question {
+  question: string;
+  // Otras propiedades si las hay
 }
 
 const Form: React.FC<FormProps>  = ({ changeQuestions , questions }) => {
@@ -16,7 +21,7 @@ const [ value, setValue ] = useState("")
 const handleSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    const newQuestion = {
+    const newQuestion: Question  = {
         question : value
     }
 
