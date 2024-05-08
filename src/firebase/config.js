@@ -34,22 +34,22 @@ const db = getFirestore(app);
 
 
 // // export default app
-// export {
-//   db,
-//   app
-// }
-
-
-
-
-
-
-
-
-
-
-
-module.exports = {
+export {
   db,
   app
-};
+}
+
+
+
+
+
+
+
+
+
+
+
+// module.exports = {
+//   db,
+//   app
+// };
