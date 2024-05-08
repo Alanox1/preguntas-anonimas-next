@@ -4,9 +4,9 @@ import Questions from "@/components/Questions";
 import { useEffect, useState } from "react";
 import {getFirestore, getDocs, collection} from "firebase/firestore"
 import {app}from "@/firebase/config"
-
+import { QuestionType } from "@/questionType";
 interface QuestionsType {
-  id: string;
+  id?: string;
   question: string ;
 }
 
@@ -44,7 +44,10 @@ export default function Home() {
   console.log(questions)
   return (
     <div>
-      <Form changeQuestions = { setQuestions } questions={ questions } />
+      {/* <Form changeQuestions = { setQuestions } questions={ questions } /> */}
+      <Form changeQuestions={(newQuestions: QuestionsType[]) => setQuestions(newQuestions)} questions={questions} />
+
+     
       <Questions questions={questions} />
     </div>
   );

@@ -1,6 +1,6 @@
 import React from 'react'
 interface Question {
-    id: string;
+    id?: string;
     question: string;
 }
 const SingleQuestion: React.FC<Question> = ({question}) => {
