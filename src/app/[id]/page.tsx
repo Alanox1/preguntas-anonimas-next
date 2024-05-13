@@ -8,7 +8,7 @@ interface ParamsType {
 }
 
 const Page = ({ params } : {params : ParamsType}) => {
-  const [ question, setQuestion ] = useState(null)
+  const [ question, setQuestion ] = useState<string | null>(null)
  
   // console.log("hola soy",params.id)
     const id  = params.id
@@ -19,6 +19,8 @@ const Page = ({ params } : {params : ParamsType}) => {
     .then(res => {
       const pregunta = res.data()
       if (pregunta) { // Verificar si pregunta no es undefined
+
+       
         setQuestion(pregunta.question);
       } else {
         // Manejar el caso donde pregunta es undefined
