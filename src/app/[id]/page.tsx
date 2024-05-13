@@ -1,5 +1,5 @@
 "use client"
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { getFirestore, doc, getDoc } from 'firebase/firestore'
 import {app}from "@/firebase/config"
 interface ParamsType {
@@ -13,22 +13,48 @@ const Page = ({ params } : {params : ParamsType}) => {
   // console.log("hola soy",params.id)
     const id  = params.id
     // console.log(id)
-  const queryDb = getFirestore(app)
-  const queryDoc = doc(queryDb, "questions", id)
-  getDoc(queryDoc)
-    .then(res => {
-      const pregunta = res.data()
-      if (pregunta) { // Verificar si pregunta no es undefined
+  
+  useEffect(() => {
+    const queryDb = getFirestore(app);
+    const queryDoc = doc(queryDb, 'questions', params.id);
+    
+    getDoc(queryDoc)
+      .then(res => {
+        const pregunta = res.data();
+        if (pregunta && pregunta.question) {
+          setQuestion(pregunta.question);
+        } else {
+          // Manejar el caso donde pregunta es undefined
+        }
+      })
+      .catch(error => {
+        // Manejar errores
+        console.log(error);
+      });
+  }, [params.id])
+
+
+
+
+
+
+
+  // const queryDb = getFirestore(app)
+  // const queryDoc = doc(queryDb, "questions", id)
+  // getDoc(queryDoc)
+  //   .then(res => {
+  //     const pregunta = res.data()
+  //     if (pregunta) { // Verificar si pregunta no es undefined
 
        
-        setQuestion(pregunta.question);
-      } else {
-        // Manejar el caso donde pregunta es undefined
-      }     
-  }) .catch(error => {
-    // Manejar errores
-    console.log(error)
-  });
+  //       setQuestion(pregunta.question);
+  //     } else {
+  //       // Manejar el caso donde pregunta es undefined
+  //     }     
+  // }) .catch(error => {
+  //   // Manejar errores
+  //   console.log(error)
+  // });
    
   
   console.log(question)
