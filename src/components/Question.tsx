@@ -6,7 +6,8 @@ interface Question {
 }
 const SingleQuestion: React.FC<Question> = ({question, id}) => {
 
-  if(!id) return
+  if (!id) return null;
+  
   return (
     <Link href={`/${id}`}>
       <div className='flex flex-col'>
