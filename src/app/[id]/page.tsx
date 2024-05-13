@@ -4,12 +4,13 @@ import { getFirestore, doc, getDoc } from 'firebase/firestore'
 import {app}from "@/firebase/config"
 interface ParamsType {
   // Define la estructura de los parámetros aquí
-  id : string
+  id : string;
 }
 
 const Page = ({ params } : {params : ParamsType}) => {
   const [ question, setQuestion ] = useState<string | null>(null)
-  const [loading, setLoading] = useState(true);
+  console.log(question)
+  const [loading, setLoading] = useState<boolean>(true);
   // console.log("hola soy",params.id)
     const id  = params.id
     // console.log(id)
@@ -22,7 +23,7 @@ const Page = ({ params } : {params : ParamsType}) => {
     getDoc(queryDoc)
       .then(res => {
         const pregunta = res.data();
-        if (pregunta && pregunta.question) {
+        if (pregunta && typeof pregunta.question === 'string') {
           setQuestion(pregunta.question);
         } else {
           // Manejar el caso donde pregunta es undefined
