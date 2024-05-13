@@ -17,6 +17,7 @@ interface FirebaseQuestionData {
 
 export default function Home() {
   const [ questions, setQuestions ] = useState<QuestionsType[]>([])
+  const [ loading, setIsLoading ] = useState(false)
 
   useEffect(() => {
     const querydb = getFirestore(app)
@@ -36,19 +37,24 @@ export default function Home() {
         fetchedQuestions.push(question);
       });
       setQuestions(fetchedQuestions);
+      setIsLoading(true)
     })
     .catch(err => {
       console.log(err)
     })
-  },[])
-  console.log(questions)
+  },[questions])
+
   return (
     <div>
-      {/* <Form changeQuestions = { setQuestions } questions={ questions } /> */}
-      <Form changeQuestions={(newQuestions: QuestionsType[]) => setQuestions(newQuestions)} questions={questions} />
-
-     
-      <Questions questions={questions} />
+      {
+        loading
+        ? <>
+             <Form changeQuestions={(newQuestions: QuestionsType[]) => setQuestions(newQuestions)} questions={questions} />
+             <Questions questions={questions} />
+          </>
+        :  <p className="text-white">Cargando...</p>
+      }
+    
     </div>
   );
 }

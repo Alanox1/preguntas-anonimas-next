@@ -44,18 +44,17 @@ const handleSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
         question : value,
         // Puedes agregar más campos si lo necesitas
       });
-  
-      console.log('La pregunta se agregó correctamente.');
+
     } catch (error) {
       console.error('Error al agregar la pregunta:', error);
     }
 }
   return (
     <form onSubmit={handleSubmit} className='w-full flex flex-col'>
-          <label htmlFor="questionInput" className='bg-red-500 p-4 text-2xl'>Questioncy</label>
-          <input id="questionInput"  type='text' value={value} onChange={(e) => setValue(e.target.value)} placeholder='Me pregunto si...' className='p-6' />
+          <label htmlFor="questionInput" className='bg-pink-500 p-4 text-2xl text-white'>Questioncy</label>
+          <input id="questionInput"  type='text' value={value} onChange={(e) => setValue(e.target.value)} placeholder='Me pregunto si...' className='p-8 text-2xl' />
 
-          <button type='submit' className='mt-4 text-center bg-green-500 p-4 text-xl'>Enviar pregunta</button>
+          <button type='submit' className='mt-4 text-center bg-pink-500 p-4 text-xl text-white'>Enviar pregunta</button>
     </form>
   )
 }
